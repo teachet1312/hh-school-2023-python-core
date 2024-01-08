@@ -14,8 +14,7 @@ class Market:
         :param title:
         :return: True|False
         """
-        # так как магазин принимает в себя множества вин и пива,
-        # то проверка через in будет осуществляться за О(1)
+
         return (title in self.wines) or (title in self.beers)
 
     @logger
