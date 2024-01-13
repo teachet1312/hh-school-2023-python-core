@@ -3,8 +3,8 @@ from logger import logger
 
 class Market:
     def __init__(self, wines: set = None, beers: set = None) -> None:
-        self.wines = {wine.title: wine for wine in wines}
-        self.beers = {beer.title: beer for beer in beers}
+        self.wines = {wine.title: wine for wine in wines} if wines is not None else {}
+        self.beers = {beer.title: beer for beer in beers} if beers is not None else {}
 
     @logger
     def has_drink_with_title(self, title=None) -> bool:
