@@ -1,5 +1,6 @@
-
+from datetime import datetime
 from logger import logger
+
 
 class Market:
     def __init__(self, wines: set = None, beers: set = None) -> None:
@@ -35,6 +36,10 @@ class Market:
 
         :return: list
         """
+        if from_date is None:
+            from_date = datetime(1900, 1, 1)
+        if to_date is None:
+            to_date = datetime.now()
         drinks = []
         for drink in self.beers.values():
             if (drink.production_date > from_date) and (drink.production_date < to_date):
