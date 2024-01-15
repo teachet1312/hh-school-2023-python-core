@@ -1,5 +1,5 @@
 
-
+from datetime import datetime
 from wine import Wine
 from beer import Beer
 from market import Market
@@ -37,4 +37,5 @@ print(market.has_drink_with_title("Шардоне"))
 print([str(drink) for drink in market.get_drinks_sorted_by_title()])
 
 # получаем список напитков в диапазоне дат
-print(market.get_drinks_by_production_date("2023-09-1", "2023-11-1"))
+print(market.get_drinks_by_production_date(datetime(2023, 9, 1),\
+                                           datetime(2023, 11, 1)))

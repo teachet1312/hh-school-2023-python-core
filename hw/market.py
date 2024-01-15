@@ -39,7 +39,7 @@ class Market:
         if from_date is None:
             from_date = datetime(1900, 1, 1)
         if to_date is None:
-            to_date = datetime.now()
+            to_date = datetime(2024, 1, 15)
         drinks = []
         for drink in self.beers.values():
             if (drink.production_date > from_date) and (drink.production_date < to_date):
