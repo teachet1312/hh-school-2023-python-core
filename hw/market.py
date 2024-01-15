@@ -4,8 +4,8 @@ from logger import logger
 
 class Market:
     def __init__(self, wines: set = None, beers: set = None) -> None:
-        self.wines = {wine.title: wine for wine in wines} if wines is not None else {}
-        self.beers = {beer.title: beer for beer in beers} if beers is not None else {}
+        self.wines = {wine.title: wine for wine in wines if wine.title is not None} if wines is not None else {}
+        self.beers = {beer.title: beer for beer in beers if beer.title is not None} if beers is not None else {}
 
     @logger
     def has_drink_with_title(self, title=None) -> bool:
@@ -40,12 +40,23 @@ class Market:
             from_date = datetime(1900, 1, 1)
         if to_date is None:
             to_date = datetime(2024, 1, 15)
+
         drinks = []
+
         for drink in self.beers.values():
-            if (drink.production_date > from_date) and (drink.production_date < to_date):
+            if drink.production_date is None:
+                continue
+            dates = [int(d) for d in drink.production_date.split("-")]
+            date = datetime(dates[0], dates[1], dates[2])
+            if (date > from_date) and (date < to_date):
                 drinks.append(drink)
 
         for drink in self.wines.values():
-            if (drink.production_date > from_date) and (drink.production_date < to_date):
+            if drink.production_date is None:
+                continue
+            dates = [int(d) for d in drink.production_date.split("-")]
+            date = datetime(dates[0], dates[1], dates[2])
+            if (date > from_date) and (date < to_date):
                 drinks.append(drink)
+
         return drinks
